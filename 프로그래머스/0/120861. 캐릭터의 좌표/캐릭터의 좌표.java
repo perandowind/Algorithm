@@ -1,0 +1,21 @@
+class Solution {
+    public int[] solution(String[] keyinput, int[] board) {
+        int[] answer = {0, 0};
+        int limitX = board[0] / 2;
+        int limitY = board[1] / 2;
+        for(String s : keyinput){
+            switch(s){
+                case "left": if(answer[0] > -limitX) answer[0] -= 1; break;
+                case "right": if(answer[0] < limitX) answer[0] += 1; break;
+                case "up": if(answer[1] < limitY) answer[1] += 1; break;
+                case "down": if(answer[1] > -limitY) answer[1] -= 1; break;
+            }
+        }
+        
+
+        
+
+        
+        return answer;
+    }
+}
