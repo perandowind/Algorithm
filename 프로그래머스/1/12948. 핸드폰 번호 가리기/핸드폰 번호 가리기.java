@@ -1,12 +1,10 @@
 class Solution {
     public String solution(String phone_number) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(phone_number);
-        int len = phone_number.length(); // 9 -> 0, 5
-        int replace_len = len - 4;
-        String replaceStr = "*".repeat(replace_len);
-        sb.replace(0, replace_len, replaceStr);
+        char[] arr = phone_number.toCharArray();
+        for(int i=0; i<arr.length - 4; i++){
+            arr[i] = '*';
+        }
         
-        return sb.toString();
+        return String.valueOf(arr);
     }
 }
