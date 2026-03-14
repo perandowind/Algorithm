@@ -2,11 +2,11 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] arr, int divisor) {
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int i : arr){
-            if(i % divisor == 0) list.add(i);
-        }
+        int[] answer = Arrays.stream(arr).filter(i -> i % divisor == 0).toArray();
         
-        return list.size() == 0 ? new int[]{-1} : list.stream().sorted().mapToInt(i->i).toArray();
+        if(answer.length == 0) answer = new int[]{-1};
+        Arrays.sort(answer);
+        
+        return answer;
     }
 }
