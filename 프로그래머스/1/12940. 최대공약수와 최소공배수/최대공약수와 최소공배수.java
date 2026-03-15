@@ -12,13 +12,17 @@ class Solution {
         return gcd;
     }
     
-    int lcm(int n, int m ){
-        int end = n * m;
-        int start = Math.min(n, m);
-    
-        for(int i=start; i<=end; i++){
-            if(i % n == 0 && i % m == 0) return i;
-        }
-        return end;
+    int lcm(int n, int m){
+        return (n * m) / gcd(n, m);
     }
+    
+//     int lcm(int n, int m ){
+//         int end = n * m;
+//         int start = Math.min(n, m);
+    
+//         for(int i=start; i<=end; i++){
+//             if(i % n == 0 && i % m == 0) return i;
+//         }
+//         return end;
+//     }
 }
