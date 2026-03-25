@@ -7,13 +7,12 @@ class Solution {
         for(char c : arr){
             if(c == ' ') {
                 sb.append(c);
-                continue;
             }else{
                 if(c <= 'Z'){
-                    c =(char) ((c + n) <= 'Z' ? (c + n) : (c + n) % ('Z'+1) + 'A');
+                    c = (char)('A' + (c + n - 'A') % 26);
                     sb.append(c);
                 }else{
-                    c =(char) ((c + n) <= 'z' ? (c + n) : (c + n) % ('z'+1) + 'a');
+                    c = (char)('a' + (c + n - 'a') % 26);
                     sb.append(c);
                 }
                 
