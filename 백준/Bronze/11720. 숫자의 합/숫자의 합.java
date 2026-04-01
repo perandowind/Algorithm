@@ -5,7 +5,6 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         int count = sc.nextInt();
         String num = sc.next();
-        int length = Math.min(count, num.length());
         int sum = 0;
         for(int i=0; i<count; i++){
             sum += num.charAt(i) - '0';
