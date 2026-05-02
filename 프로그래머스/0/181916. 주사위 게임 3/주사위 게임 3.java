@@ -4,11 +4,10 @@ class Solution {
     public int solution(int a, int b, int c, int d) {
         int answer = 1;
         HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(a, map.getOrDefault(a, 0) + 1);
-        map.put(b, map.getOrDefault(b, 0) + 1);
-        map.put(c, map.getOrDefault(c, 0) + 1);
-        map.put(d, map.getOrDefault(d, 0) + 1);
-
+        for(int i : new int[]{a,b,c,d}){
+            map.put(i, map.getOrDefault(i, 0) + 1);    
+        }
+        
         if(map.size() == 1){
             int p = a;
             answer = 1111 * p;
