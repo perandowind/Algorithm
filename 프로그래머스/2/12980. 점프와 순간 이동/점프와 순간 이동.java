@@ -6,9 +6,7 @@ public class Solution {
 
         while(n > 0){
             if(n % 2 == 0){
-                while(n % 2 == 0){
-                    n /= 2;
-                }
+                n /= 2;
             } else{
                 n = n - 1;
                 answer++;
@@ -18,3 +16,9 @@ public class Solution {
         return answer;
     }
 }
+
+// public class Solution {
+//     public int solution(int n) {
+//         return Integer.bitCount(n);
+//     }
+// }
