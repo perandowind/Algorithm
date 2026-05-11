@@ -1,0 +1,55 @@
+import java.util.*;
+
+class Solution {
+    public ArrayList<int[]> solution(String[] maze) {
+        int[][] path = bfs(maze);
+        int[][] dd = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        ArrayList<int[]> answer = new ArrayList<>();
+        
+        int r = maze.length - 2;
+        int c = maze[0].length() - 2;
+        answer.add(new int[]{r, c});
+        
+        while(r != 1 || c != 1){
+            int tmp_r = r;
+            int tmp_c = c;
+            r -= dd[path[tmp_r][tmp_c] - 1][0]; // 도착 -> 시작, 역순이므로 빼줌
+            c -= dd[path[tmp_r][tmp_c] - 1][1];
+            
+            answer.add(new int[]{r, c});
+        }
+        
+        Collections.reverse(answer);
+        return answer;
+    }
+    
+    int[][] bfs(String[] maze){
+        int n = maze.length, m = maze[0].length();
+        int[][] visited = new int[n][m];
+        Queue<int[]> q = new ArrayDeque<>();
+        int[][] dd = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 상:0,하:1,좌:2,우:3 (인덱스)
+        
+        q.offer(new int[]{1,1});
+        
+        while(!q.isEmpty()){
+            int[] cur = q.poll();
+            
+            if(cur[0] == n-2 && cur[1] == m-2){
+                return visited;
+            }
+            for(int i=0; i<4; i++){
+                int next_r = cur[0] + dd[i][0];
+                int next_c = cur[1] + dd[i][1];
+                
+                if(maze[next_r].charAt(next_c) == '.' && visited[next_r][next_c] == 0){
+                    visited[next_r][next_c] = i + 1; // 상:1,하:2,좌:3,우:4
+                    q.offer(new int[]{next_r, next_c});
+                }
+            }
+        }
+        
+        return visited;
+    }
+    
+    
+}
