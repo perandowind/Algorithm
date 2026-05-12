@@ -3,9 +3,9 @@ class Solution {
     // lcm = b * (a/gcd)
     public int solution(int[] arr) {
 
-        int lcm = lcm(arr[0], arr[1]);
+        int lcm = 1;
         
-        for(int i=2; i<arr.length; i++){
+        for(int i=0; i<arr.length; i++){
             lcm = lcm(lcm, arr[i]);
         }
         
