@@ -1,18 +1,19 @@
 import java.util.*;
-// 개선 코드
+// 개선 코드2 (HashSet 초기 크기 설정 & 배열 복사 개선)
 class Solution {
     public int solution(int[] elements) {
-        HashSet<Integer> set = new HashSet<>();
+        int n = elements.length;
+        HashSet<Integer> set = new HashSet<>(n * n);
         
-        int[] twice = new int[elements.length * 2];
+        int[] twice = new int[n * 2];
         
-        for(int i=0; i<elements.length * 2; i++){
-            twice[i] = elements[i % elements.length];
-        }
+        // System.arraycopy(원본, 원본시작위치, 목적지, 목적지시작위치, 복사할길이)
+        System.arraycopy(elements, 0, twice, 0, n);
+        System.arraycopy(elements, 0, twice, n, n);
         
-        for(int i=0; i<elements.length; i++){
+        for(int i=0; i<n; i++){
             int sum = 0;
-            for(int size=1; size<=elements.length; size++){
+            for(int size=1; size<=n; size++){
                 sum += twice[i + size - 1];
                 set.add(sum);
             }
