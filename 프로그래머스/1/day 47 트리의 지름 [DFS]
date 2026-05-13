@@ -1,0 +1,104 @@
+import java.util.*;
+
+// 내 풀이 => 속도 2배 개선, 메모리 1.5배 효율
+class Solution {
+    public int solution(int n, int[][] edges) {
+        
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        
+        for(int i=0; i<=n; i++){
+            adj.add(new ArrayList<>());
+        }
+        
+        for(int[] edge : edges){
+            adj.get(edge[0]).add(edge[1]);
+            adj.get(edge[1]).add(edge[0]);
+        }
+
+        boolean[] visited = new boolean[n+1];
+        int node = dfs(adj, visited, 1)[0]; // 가장 멀리떨어진 노드
+
+        visited = new boolean[n+1]; // 방문 상태 초기화
+        int max_dist = dfs(adj, visited, node)[1]; // 트리 지름
+        
+        return max_dist;
+    }
+    
+    int[] dfs(ArrayList<ArrayList<Integer>> adj, boolean[] visited, int start){
+        int max_dist = 0;
+        int max_node = start;
+        
+        Deque<int[]> stack = new ArrayDeque<>(); // [노드, 거리]
+        stack.push(new int[]{start, 0});
+        visited[start] = true;
+        
+        while(!stack.isEmpty()){
+            int[] cur = stack.pop();
+            if(cur[1] > max_dist){
+                max_dist = cur[1];
+                max_node = cur[0];
+            }
+            
+            for(int v : adj.get(cur[0])){
+                if(!visited[v]){
+                    visited[v] = true;
+                    stack.push(new int[]{v, cur[1] + 1});
+                }
+            }
+            
+        }
+        
+        return new int[]{max_node, max_dist};
+    }
+}
+
+/* 강사 풀이 (직관적, but 속도, 메모리 효율X)
+class Solution {
+    public int solution(int n, int[][] edges) {
+        
+        HashMap<Integer, ArrayList<Integer>> adj = new HashMap<>();
+        
+        for(int i=1; i<=n; i++){
+            adj.put(i, new ArrayList<Integer>());
+        }
+        
+        for(int[] edge : edges){
+            adj.get(edge[0]).add(edge[1]);
+            adj.get(edge[1]).add(edge[0]);
+        }
+
+        int secondStart = dfs(adj, 1)[0]; // 가장 멀리떨어진 노드
+        int max_dist = dfs(adj, secondStart)[1]; // 트리 지름
+        
+        return max_dist;
+    }
+    
+    int[] dfs(HashMap<Integer, ArrayList<Integer>> adj, int start){
+        int max_dist = 0;
+        int max_node = 0;
+        
+        HashSet<Integer> visited = new HashSet<>();
+        Deque<int[]> stack = new ArrayDeque<>(); // [노드, 거리]
+        stack.push(new int[]{start, 0});
+        visited.add(start);
+        
+        while(!stack.isEmpty()){
+            int[] cur = stack.pop();
+            if(cur[1] > max_dist){
+                max_dist = cur[1];
+                max_node = cur[0];
+            }
+            
+            for(int v : adj.get(cur[0])){
+                if(!visited.contains(v)){
+                    visited.add(v);
+                    stack.push(new int[]{v, cur[1] + 1});
+                }
+            }
+            
+        }
+        
+        return new int[]{max_node, max_dist};
+    }
+}
+*/
