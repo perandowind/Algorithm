@@ -1,11 +1,10 @@
 class Solution {
     public boolean solution(int x) {
-        String[] arr = String.valueOf(x).split("");
-        int sum = 0;
-        for(String s : arr){
-            sum += Integer.parseInt(s);
+        int ori_x = x, sum_digit = 0;
+        while(x>0){
+            sum_digit += x % 10;
+            x /= 10;
         }
-        
-        return x % sum == 0;
+        return ori_x % sum_digit == 0 ? true : false;
     }
 }
