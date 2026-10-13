@@ -1,15 +1,16 @@
 class Solution {
-    public int solution(long num) {
+    public int solution(int num) {
         int count = 0;
         
-        while(num != 1 && count < 500){
+        long value = num;
+        while(value != 1 && count <= 500){
+            if(value % 2 == 0) value /= 2;
+            else value = 3 * value + 1;
             count++;
-            num = (num % 2 == 0) ? num/2 : 3*num + 1;
-            
-            if(num == 1)  return count;
-            
         }
         
-        return count >= 500 ? -1 : count;
+        if(value != 1) return -1;
+        
+        return count;
     }
 }
