@@ -1,9 +1,13 @@
 class Solution {
     public int solution(int[] absolutes, boolean[] signs) {
-        int answer = 0, len = signs.length;
-        for(int i=0; i<len; i++){
-            if(signs[i] == true) answer += absolutes[i];
-            else answer -= absolutes[i];
+        int length = absolutes.length;
+        for(int i=0; i<length; i++){
+            if(signs[i] == false) absolutes[i] = -absolutes[i];
+        }
+        
+        int answer = 0;
+        for(int i : absolutes){
+            answer += i;
         }
         
         return answer;
