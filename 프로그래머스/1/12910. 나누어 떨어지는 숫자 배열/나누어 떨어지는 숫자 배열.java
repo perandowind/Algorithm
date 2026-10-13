@@ -2,11 +2,37 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] arr, int divisor) {
-        int[] answer = Arrays.stream(arr).filter(i -> i % divisor == 0).toArray();
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i : arr){
+            if(i % divisor == 0) list.add(i);
+        }
         
-        if(answer.length == 0) answer = new int[]{-1};
-        Arrays.sort(answer);
+        if(list.size() == 0) return new int[]{-1};
         
-        return answer;
+        return list.stream().sorted().mapToInt(Integer::intValue).toArray();
     }
 }
+
+// import java.util.*;
+
+// class Solution {
+//     public int[] solution(int[] arr, int divisor) {
+//         int count = 0;
+//         for(int i=0; i<arr.length; i++){
+//             if(arr[i] % divisor == 0) count++;
+//         }
+//         int[] answer;
+//         if(count != 0) {
+//             answer = new int[count];
+//         } else{
+//             return new int[]{-1};  
+//         } 
+        
+//         int index = 0;
+//         for(int i=0; i<arr.length; i++){
+//             if(arr[i] % divisor == 0) answer[index++] = arr[i];
+//         }
+//         Arrays.sort(answer);
+//         return answer;
+//     }
+// }
