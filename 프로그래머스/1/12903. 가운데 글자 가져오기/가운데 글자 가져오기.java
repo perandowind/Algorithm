@@ -1,14 +1,10 @@
 class Solution {
     public String solution(String s) {
-        String answer = "";
         int len = s.length();
         if(len % 2 == 1){
-            answer = s.substring(len/2, len/2 + 1);
+            return s.substring(len/2, len/2 + 1); // 5/2 = 2
         }else{
-            answer = s.substring(len/2 - 1, len/2 + 1);
+            return s.substring(len/2 -1, len/2 + 1); // 6/2 = 3 -> 2~3 필요
         }
-        
-        
-        return answer;
     }
 }
