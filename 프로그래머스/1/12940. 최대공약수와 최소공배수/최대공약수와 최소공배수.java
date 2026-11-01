@@ -1,15 +1,14 @@
 class Solution {
+    // 최소공배수 = 두 수의 곱 / 최대공약수 
     public int[] solution(int n, int m) {
-        int[] answer = new int[2];
-        int end = Math.min(n, m);
-        for(int i=1; i<=end; i++){
-            if(n % i == 0 && m % i == 0){
-                answer[0] = i;
-                answer[1] = (n * m) / i;    
-            }
-            
+        return new int[]{gcd(n,m), (n*m)/gcd(n,m)};
+    }
+    int gcd(int a, int b){
+        while(b > 0){
+            int r = a % b;
+            a = b;
+            b = r;
         }
-        
-        return answer;
+        return a;
     }
 }
