@@ -1,14 +1,19 @@
 class Solution {
     public String solution(String s) {
         StringBuilder sb = new StringBuilder();
-        String[] arr = s.split("");
-        int cnt = 0;
-        for(String str : arr){
-            cnt = str.equals(" ") ? 0 : cnt + 1;
-            String input = cnt % 2 == 1 ? str.toUpperCase() : str.toLowerCase();
-            sb.append(input);
+        int index = 0;
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
+            if(c == ' '){
+                index = 0;
+                sb.append(c);
+                continue;
+            } 
+            if(index % 2 == 0) sb.append(Character.toUpperCase(c));
+            else sb.append(Character.toLowerCase(c));
+            index++;
         }
-            
+        
         return sb.toString();
     }
 }
