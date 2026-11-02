@@ -1,25 +1,18 @@
+import java.util.*;
 class Solution {
     public String solution(String s, int n) {
-        // 'A' 65 ~ 90, 'a' 97 26개
+        // 65 A, 97 a
         StringBuilder sb = new StringBuilder();
         char[] arr = s.toCharArray();
-        
         for(char c : arr){
-            if(c == ' ') {
-                sb.append(c);
-            }else{
-                if(c <= 'Z'){
-                    c = (char)('A' + (c + n - 'A') % 26);
-                    sb.append(c);
-                }else{
-                    c = (char)('a' + (c + n - 'a') % 26);
-                    sb.append(c);
-                }
-                
+            if(Character.isUpperCase(c)){
+                c = (char)((c - 'A' + n) % 26 + 'A');
+            }else if(Character.isLowerCase(c)){
+                c = (char)((c - 'a' + n) % 26 + 'a');
             }
-            
+                
+            sb.append(c);
         }
-        
         return sb.toString();
     }
 }
