@@ -4,15 +4,27 @@ class Solution {
     public int[] solution(int[] array, int[][] commands) {
         int[] answer = new int[commands.length];
         for(int i=0; i<commands.length; i++){
-            int len = commands[i][1] - commands[i][0] + 1;
-            int[] temp = new int[len];
-            int index = 0;
-            for(int j=commands[i][0]-1; j<commands[i][1]; j++){
-                temp[index++] = array[j];
-            }
-            Arrays.sort(temp); // 정렬
-            answer[i] = temp[commands[i][2] - 1];
+            int[] temp = Arrays.copyOfRange(array, commands[i][0]-1, commands[i][1]);
+            Arrays.sort(temp);
+            answer[i] = temp[commands[i][2]-1];
         }
         return answer;
     }
 }
+
+// class Solution {
+//     public int[] solution(int[] array, int[][] commands) {
+//         int[] answer = new int[commands.length];
+//         for(int i=0; i<commands.length; i++){
+//             int len = commands[i][1] - commands[i][0] + 1;
+//             int[] temp = new int[len];
+//             int index = 0;
+//             for(int j=commands[i][0]-1; j<commands[i][1]; j++){
+//                 temp[index++] = array[j];
+//             }
+//             Arrays.sort(temp); // 정렬
+//             answer[i] = temp[commands[i][2] - 1];
+//         }
+//         return answer;
+//     }
+// }
