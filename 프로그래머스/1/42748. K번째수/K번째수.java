@@ -3,19 +3,16 @@ import java.util.*;
 class Solution {
     public int[] solution(int[] array, int[][] commands) {
         int[] answer = new int[commands.length];
-        // i-1 인덱스부터 < j인덱스 까지 자르고 "정렬"
-        
-        for(int n=0; n<commands.length; n++){
-            int i = commands[n][0], j = commands[n][1], k = commands[n][2];
-            int[] tmp = Arrays.copyOfRange(array, i-1, j);
-            Arrays.sort(tmp);
-            int cnt = 0;
-            for(int l=0; l<tmp.length; l++){
-                cnt++;
-                if(cnt == k) answer[n] = tmp[l];   
-            }    
+        for(int i=0; i<commands.length; i++){
+            int len = commands[i][1] - commands[i][0] + 1;
+            int[] temp = new int[len];
+            int index = 0;
+            for(int j=commands[i][0]-1; j<commands[i][1]; j++){
+                temp[index++] = array[j];
+            }
+            Arrays.sort(temp); // 정렬
+            answer[i] = temp[commands[i][2] - 1];
         }
-        
         return answer;
     }
 }
