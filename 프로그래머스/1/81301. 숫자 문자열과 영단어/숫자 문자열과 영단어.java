@@ -1,10 +1,12 @@
 class Solution {
     public int solution(String s) {
-        String[] strArr = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        String[] strArr = {"zero", "one", "two", "three", "four", "five", "six", "seven", 
+                           "eight", "nine"};
         for(int i=0; i<strArr.length; i++){
-            s = s.replaceAll(strArr[i], Integer.toString(i));
+            if(s.contains(strArr[i])){
+                s = s.replaceAll(strArr[i], String.valueOf(i));
+            }
         }
-        
         return Integer.parseInt(s);
     }
 }
