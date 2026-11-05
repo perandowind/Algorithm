@@ -1,10 +1,12 @@
 class Solution {
     public String solution(String[] cards1, String[] cards2, String[] goal) {
-        int i=0, j=0;
-        for(String s : goal){
-            if(i < cards1.length && cards1[i].equals(s)) i++;
-            else if(j < cards2.length && cards2[j].equals(s)) j++;
-            else return "No";
+        int index1 = 0, index2 = 0;
+        for(int i=0; i<goal.length; i++){
+            if(index1 < cards1.length && cards1[index1].equals(goal[i])){
+                index1++;
+            }else if(index2 < cards2.length && cards2[index2].equals(goal[i])){
+                index2++;
+            }else return "No";
         }
         
         return "Yes";
