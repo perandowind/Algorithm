@@ -2,14 +2,10 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] nums) {
-        
-        int picks = nums.length / 2;
+        int max = nums.length/2;
         HashSet<Integer> set = new HashSet<>();
+        for(int num : nums) set.add(num);
         
-        for(int i : nums){
-            set.add(i);
-        }
-        
-        return picks > set.size() ? set.size() : picks;
+        return set.size() > max ? max : set.size();
     }
 }
